@@ -1,24 +1,38 @@
-# README
+テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type    | options    
+| -------------------| --------| ----------
+| nickname           | string  | null: false
+| name               | string  | null: false
+| encrypted_password | string  | null: false
+| email              | string  | null: false, ユニーク制約
+| birthday           | integer | null: false
 
-* Ruby version
+## sale_recordテーブル
 
-* System dependencies
+| column  | Type       | options
+| ------- | -----------| ------------------------------
+| user    | references | null: false, foreign_key: true
+| sale    | references | unll: false, foreign_key: true
+| shpping | references | null: false, foreign_key: true
 
-* Configuration
+## shipping
 
-* Database creation
+| column   | Type       | options
+| -------- | ---------- | -----------
+| area     | references | null: false
+| area_fee | references | null: false
 
-* Database initialization
+## sale
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| column      | Type    | options
+| ----------- | ------- | -----------
+| sale_name   | string  | null: false
+| cotegory    | string  | null: false
+| explanation | string  | null: false
+| state       | string  | null: false
+| area        | string  | null: false
+| area_fee    | integer | null: false
+| days        | integer | null: false
