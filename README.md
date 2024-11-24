@@ -7,7 +7,7 @@
 | nickname           | string  | null: false
 | name               | string  | null: false
 | encrypted_password | string  | null: false
-| email              | string  | null: false, ユニーク制約
+| email              | string  | null: false, unique: true
 | birthday           | date    | null: false
 
 has_many :sale_records
