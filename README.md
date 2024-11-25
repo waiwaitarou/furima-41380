@@ -34,6 +34,7 @@ has_one :shipping
 | postal_code      | string     | null: false
 | prefecture_id    | integer    | null: false
 | building_name    | string     | 
+| city             | string     | null: false
 | region_of_origin | string     | null: false
 | tel_number       | string     | null: false
 | sale_record      | references | null: false, foreign_key: true
