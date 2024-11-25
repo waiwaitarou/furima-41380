@@ -13,8 +13,8 @@
 | email              | string  | null: false, unique: true
 | birthday           | date    | null: false
 
-has_many :sale_record
-has_many :item
+has_many :sale_records
+has_many :items
 
 ## sale_recordsテーブル
 
@@ -25,7 +25,7 @@ has_many :item
 
 belongs_to :user
 belongs_to :item
-belongs_to :shipping
+has_one :shipping
 
 ## shippingsテーブル
 
@@ -38,7 +38,7 @@ belongs_to :shipping
 | tel_no           | string     | null: false
 | sale_record      | references | null: false, foreign_key: true
 
-has_many :sale_record
+belongs_to :sale_records
 
 ## itemsテーブル
 
