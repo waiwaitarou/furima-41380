@@ -21,10 +21,11 @@ has_many :item
 | column           | Type       | options
 | ---------------- | -----------| ------------------------------
 | user             | references | null: false, foreign_key: true
-| item             | references | unll: false, foreign_key: true
+| item             | references | null: false, foreign_key: true
 
 belongs_to :user
 belongs_to :item
+belongs_to :shipping
 
 ## shippingsテーブル
 
@@ -32,14 +33,12 @@ belongs_to :item
 | ---------------- | ---------- | -----------
 | postal_code      | string     | null: false
 | prefecture_id    | integer    | null: false
-| city             | string     | null: false
-| house_number     | integer    | null: false
-| building_name    | string     | null: false
+| building_name    | string     | 
 | region_of_origin | string     | null: false
-| tel_No           | string     | null: false
+| tel_no           | string     | null: false
 | sale_record      | references | null: false, foreign_key: true
 
-has_one :item
+has_many :sale_record
 
 ## itemsテーブル
 
