@@ -105,11 +105,9 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Birthday can't be blank"
       end
-    end
     context '新規登録が正常に完了する場合'
       it '正しく情報が記入されていれば登録できる' do
         expect(@user).to be_valid
       end
-    end
   end
 end
