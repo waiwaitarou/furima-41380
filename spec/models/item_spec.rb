@@ -17,28 +17,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Explanatation can't be blank"
       end
-      it 'cotegory_idが空では登録できない' do
-        @item.cotegory_id = ''
+      it 'cotegory_idが未選択では登録できない' do
+        @item.cotegory_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Cotegory can't be blank"
       end
-      it 'state_idが空では登録できない' do
-        @item.state_id = ''
+      it 'state_idが未選択では登録できない' do
+        @item.state_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "State can't be blank"
       end
-      it 'shipping_day_idが空では登録できない' do
-        @item.shipping_day_id = ''
+      it 'shipping_day_idが未選択では登録できない' do
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping day can't be blank"
       end
-      it 'shipping_fee_idが空では登録できない' do
-        @item.shipping_fee_id = ''
+      it 'shipping_fee_idが未選択では登録できない' do
+        @item.shipping_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping fee can't be blank"
       end
-      it 'prefectureが空では登録できない' do
-        @item.prefecture_id = ''
+      it 'prefecture_idが未選択では登録できない' do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture can't be blank"
       end
@@ -46,6 +46,16 @@ RSpec.describe Item, type: :model do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
+      end
+      it 'priceが9999999以上では登録できない' do
+        @item.price = 15642356461534
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
+      end
+      it 'priceが300以下以下では登録できない' do
+        @item.price = 2
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
       end
       it 'priceが数字以外では登録できない' do
         @item.price = 'a'
