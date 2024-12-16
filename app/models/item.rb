@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  validates :image, presence: true
   validates :sale_name, presence: true
   validates :explanatation, presence: true
   validates :cotegory_id, numericality: { other_than: 1, message: "can't be blank" }

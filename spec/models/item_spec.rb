@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品の確認' do
-    context '商品出品が成功した場合'
+    context '商品出品が失敗した場合'
       it 'sale_nameが空では登録できない' do
         @item.sale_name = ''
         @item.valid?
@@ -61,6 +61,16 @@ RSpec.describe Item, type: :model do
         @item.price = 'a'
         @item.valid?
         expect(@item.errors.full_messages).to include "Price is not a number"
+      end
+      it '画像が空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
+      end
+      it 'userが紐づいていない場合、登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "User must exist"
       end
     context '新規登録が正常に完了する場合'
       it '正しく情報が記入されていれば登録できる' do
