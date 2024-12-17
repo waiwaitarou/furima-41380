@@ -19,4 +19,5 @@ class Item < ApplicationRecord
   belongs_to :state
   belongs_to :shipping_fee
   belongs_to :shipping_day
+  has_many :sell_records
 end

@@ -121,6 +121,7 @@
   <%# /FURIMAの特徴 %>
 
   <%# 商品一覧 %>
+  <% @items.each do |item| %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >
@@ -130,30 +131,38 @@
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <li class='list'>
-        <%= link_to "#" do %>
-        <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
+        <%= link_to '#' do %>
+          <div class='item-img-content'>
+            <%= image_tag "item-sample.png", class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
+            <%# 商品が売れていればsold outを表示しましょう %>
+            <%# if item.sell_records %>
+              <%# @items.each do |item| %>
+                <%#= item.image %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+                <%#= item.sale_name %>
+                <%#= item.price %>
+                <%#= item.shipping_fee_id %>
+              <%# end %>
+            <%# end %>
           <%# //商品が売れていればsold outを表示しましょう %>
-
+        <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "商品名" %>
+            <%= item.sale_name %>
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+            <span><%= item.price %>円<br><%= item.shipping_fee_id %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
             </div>
           </div>
         </div>
-        <% end %>
+        
       </li>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
@@ -181,6 +190,7 @@
     </ul>
   </div>
   <%# /商品一覧 %>
+  <% end %>
 </div>
 
 <%= link_to('/items/new', class: 'purchase-btn') do %>
