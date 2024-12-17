@@ -121,9 +121,9 @@
   <%# /FURIMAの特徴 %>
 
   <%# 商品一覧 %>
-  <% @items.each do |item| %>
   <div class='item-contents'>
-    <h2 class='title'>ピックアップカテゴリー</h2>
+  <h2 class='title'>ピックアップカテゴリー</h2>
+  <% @items.each do |item| %>
     <div class="subtitle" >
       新規投稿商品
     </div>
@@ -168,6 +168,7 @@
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
+      <% if  %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
