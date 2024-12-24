@@ -38,7 +38,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:sale_name,:explanatation,:cotegory_id,:image,:state_id,:shipping_day_id,:shipping_fee_id,:prefecture_id,:price).merge(user_id: current_user.id)
   end
   def move_to_index
-    redirect_to '/'
+    if current_user != @item.user
+      redirect_to '/'
+    end
   end
   def set_item
     @item = Item.find(params[:id])
