@@ -31,12 +31,12 @@ has_one :shipping
 
 | column           | Type       | options
 | ---------------- | ---------- | -----------
-| postal_code      | string     | null: false
+| postal_code      | integer    | null: false
 | prefecture_No    | integer    | null: false
 | building_name    | string     | 
 | city             | string     | null: false
-| region_of_origin | string     | null: false
-| tel_number       | string     | null: false
+| prefecture       | integer    | null: false
+| tel_number       | integer    | null: false
 | sale_record      | references | null: false, foreign_key: true
 
 belongs_to :sale_record
