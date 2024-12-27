@@ -32,7 +32,7 @@ has_one :shipping
 | column           | Type       | options
 | ---------------- | ---------- | -----------
 | postal_code      | string     | null: false
-| prefecture_id    | integer    | null: false
+| prefecture_No    | integer    | null: false
 | building_name    | string     | 
 | city             | string     | null: false
 | region_of_origin | string     | null: false
