@@ -2,6 +2,7 @@ class  Order < ApplicationRecord
   include ActiveModel::Model
   attr_accessor :prefecture, :postal_code, :prefecture_No, :building_name, :city, :tel_number, :sale_record, :user, :item
 
+  validates :prefecture, presence: true
   validates :postal_code, presence: true, format: {with: /\A\d+-\d+-\d+\Z/}
   validates :prefecture_No, presence: true
   validates :tel_number, presence: true, format: {with: /\A\d+-\d+-\d+\Z/}
