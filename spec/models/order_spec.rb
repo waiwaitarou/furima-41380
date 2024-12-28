@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Oder, type: :model do
+RSpec.describe Order, type: :model do
   before do
     @order = FactoryBot.build(:order)
   end
@@ -8,7 +8,7 @@ RSpec.describe Oder, type: :model do
   describe '商品購入の確認' do
     context '商品購入が失敗した場合'
       it 'prefectureが未選択では登録できない' do
-        @order.prefecture = ''
+        @order.prefecture = 1
         @order.valid?
         expect(@order.errors.full_messages).to include "Sale name can't be blank"
       end
@@ -24,6 +24,11 @@ RSpec.describe Oder, type: :model do
       end
       it 'prefecture_NOが空では登録できない' do
         @order.prefecture_No = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include "prefecture No can't be blank"
+      end
+      it 'prefecture_NOが数字以外では登録できない' do
+        @order.prefecture_No = 'd'
         @order.valid?
         expect(@order.errors.full_messages).to include "prefecture No can't be blank"
       end
@@ -46,6 +51,21 @@ RSpec.describe Oder, type: :model do
         @order.city = ''
         @order.valid?
         expect(@item.errors.full_messages).to include "city can't be blank"
+      end
+      it "tokenが空では登録できないこと" do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+      it "priceが空では保存ができないこと" do
+        @order.price = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Price can't be blank")
+      end
+      it "user_idが空では保存ができないこと" do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("user_id can't be blank")
       end
       it 'orderが紐づいていない場合、登録できない' do
         @order.item = nil
