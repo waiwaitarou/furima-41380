@@ -134,17 +134,17 @@
             <%= image_tag item.image, class: "item-img" %>
 
             <%# 商品が売れていればsold outを表示しましょう %>
-            <%# if item.sell_records %>
-              <%# @items.each do |item| %>
-                <%#= item.image %>
+            <% if item.sell_records %>
+              <% @items.each do |item| %>
+                <%= item.image %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
-                <%#= item.sale_name %>
-                <%#= item.price %>
-                <%#= item.shipping_fee_id %>
-              <%# end %>
-            <%# end %>
+                <%= item.sale_name %>
+                <%= item.price %>
+                <%= item.shipping_fee_id %>
+              <% end %>
+            <% end %>
           <%# //商品が売れていればsold outを表示しましょう %>
         <% end %>
         </div>

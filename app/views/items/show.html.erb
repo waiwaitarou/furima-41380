@@ -7,19 +7,20 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-        <div class="sold-out">
-          <span>Sold Out!!</span>
-        </div>
-    </div>
-    <div class="item-price-box">
-      <span class="item-price">
-        ¥<%= @item.price %>
-      </span>
-      <span class="item-postage">
-        <%= @item.shipping_fee.name %>
-      </span>
-    </div>
-
+        <%= if item.sell_records %>
+          <div class="sold-out">
+            <span>Sold Out!!</span>
+          </div>
+      </div>
+      <div class="item-price-box">
+        <span class="item-price">
+          ¥<%= @item.price %>
+        </span>
+        <span class="item-postage">
+          <%= @item.shipping_fee.name %>
+        </span>
+      </div>
+      <%= end %>
       <% if user_signed_in? %>
         <% if current_user == @item.user %>
           <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
