@@ -4,10 +4,10 @@ class CreateShippings < ActiveRecord::Migration[7.0]
       t.integer :postal_code
       t.integer :prefecture_No
       t.string :building_name
-      t.string :cityt
+      t.string :city
       t.integer :prefecture
-      t.integer :tel_number
-      t.references :sale_record, null: false, foreign_key: true
+      t.string :tel_number
+      t.references :sell_record, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -17,6 +17,7 @@ console.log("OK");
           const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
         }
         numberElement.clear();
         expiryElement.clear();

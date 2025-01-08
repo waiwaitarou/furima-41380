@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_27_110328) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_27_101919) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -54,31 +54,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_27_110328) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "orders", charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sale_records", charset: "utf8mb3", force: :cascade do |t|
+  create_table "sell_records", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_sale_records_on_item_id"
-    t.index ["user_id"], name: "index_sale_records_on_user_id"
+    t.index ["item_id"], name: "index_sell_records_on_item_id"
+    t.index ["user_id"], name: "index_sell_records_on_user_id"
   end
 
   create_table "shippings", charset: "utf8mb3", force: :cascade do |t|
     t.integer "postal_code"
     t.integer "prefecture_No"
     t.string "building_name"
-    t.string "cityt"
+    t.string "city"
     t.integer "prefecture"
-    t.integer "tel_number"
-    t.bigint "sale_record_id", null: false
+    t.string "tel_number"
+    t.bigint "sell_record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sale_record_id"], name: "index_shippings_on_sale_record_id"
+    t.index ["sell_record_id"], name: "index_shippings_on_sell_record_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
@@ -102,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_27_110328) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
-  add_foreign_key "sale_records", "items"
-  add_foreign_key "sale_records", "users"
-  add_foreign_key "shippings", "sale_records"
+  add_foreign_key "sell_records", "items"
+  add_foreign_key "sell_records", "users"
+  add_foreign_key "shippings", "sell_records"
 end
