@@ -1,8 +1,13 @@
 class FormController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: :index
   def index
     @form = Form.new
     @item = Item.find(params[:item_id])
+    if @item.sell_record or @item.sell_record != nil
+      redirect_to user_session_path
+    elsif @item.user == current_user && @item.sell_record != nil
+      redirect_to '/'
+    end
   end
 
   def new

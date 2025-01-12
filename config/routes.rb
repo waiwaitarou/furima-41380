@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :items
   resources :form, only:[:index, :create]
   resources :items do
-    resources :form, only:[:index, :create]
+    resources :form, only:[:index, :create, :show]
   end
   # root "articles#index"
 end
