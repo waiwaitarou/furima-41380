@@ -3,14 +3,14 @@ class Form
   attr_accessor :prefecture, :postal_code, :prefecture_No, :building_name, :city, :tel_number, :sell_record, :user_id, :item_id, :token, :item, :user
 
   with_options presence: true do
-    validates :prefecture, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+    validates :prefecture, numericality: { other_than: 1, message: "can't be blank" }
     validates :user_id
     validates :item_id
-    validates :postal_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
-    validates :prefecture_No, presence: true
-    validates :tel_number, presence: true, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
-    validates :city, presence: true
-    validates :token, presence: true
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
+    validates :prefecture_No
+    validates :tel_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
+    validates :city
+    validates :token
   end
 
   def save

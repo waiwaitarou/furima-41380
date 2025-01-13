@@ -59,10 +59,14 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include "Token can't be blank"
       end
-      context '商品購入商品購入が正常に完了する場合' do
-        it '正しく情報が記入されていれば購入できる' do
-          expect(@form).to be_valid
-        end
+    end
+    context '商品購入商品購入が正常に完了する場合' do
+      it '正しく情報が記入されていれば購入できる' do
+        expect(@form).to be_valid
+      end
+      it 'building_nameが空でも購入できる' do
+        @form.building_name = ''
+        expect(@form).to be_valid
       end
     end
   end

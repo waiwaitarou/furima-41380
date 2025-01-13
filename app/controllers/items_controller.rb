@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.sell_record
+      redirect_to '/'
+    end
   end
 
   def update
