@@ -9,7 +9,6 @@ class Form
     validates :postal_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
     validates :prefecture_No, presence: true
     validates :tel_number, presence: true, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
-    validates :building_name, presence: true
     validates :city, presence: true
     validates :token, presence: true
   end

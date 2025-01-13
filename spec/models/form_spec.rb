@@ -8,7 +8,7 @@ RSpec.describe Form, type: :model do
   end
 
   describe '商品購入の確認' do
-    context '商品購入が失敗した場合'
+    context '商品購入が失敗した場合' do
       it 'prefectureが未選択では登録できない' do
         @form.prefecture = 1
         @form.valid?
@@ -19,8 +19,8 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include "Postal code can't be blank"
       end
-      it 'postal_codeが数字以外では登録できない' do
-        @form.postal_code = 'a'
+      it 'postal_codeにハイフンが含まれていないと登録できない' do
+        @form.postal_code = '4568852'
         @form.valid?
         expect(@form.errors.full_messages).to include "Postal code is invalid. Enter it as follows (e.g. 123-4567)"
       end
@@ -34,8 +34,18 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include "Tel number can't be blank"
       end
-      it 'tel_numberが数字以外では登録できない' do
-        @form.tel_number = 'a'
+      it 'tel_numberに数字以外が含まれていると登録できない' do
+        @form.tel_number = '59665d565'
+        @form.valid?
+        expect(@form.errors.full_messages).to include "Tel number is invalid"
+      end
+      it 'tel_numberが9桁以下だと登録できない' do
+        @form.tel_number = 545446
+        @form.valid?
+        expect(@form.errors.full_messages).to include "Tel number is invalid"
+      end
+      it 'tel_numberが12桁以上だと登録できない' do
+        @form.tel_number = 865456786454546
         @form.valid?
         expect(@form.errors.full_messages).to include "Tel number is invalid"
       end
@@ -49,9 +59,11 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include "Token can't be blank"
       end
-    context '商品購入商品購入が正常に完了する場合'
-      it '正しく情報が記入されていれば購入できる' do
-        expect(@form).to be_valid
+      context '商品購入商品購入が正常に完了する場合' do
+        it '正しく情報が記入されていれば購入できる' do
+          expect(@form).to be_valid
+        end
       end
+    end
   end
 end

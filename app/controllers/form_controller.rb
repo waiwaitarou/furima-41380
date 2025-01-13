@@ -1,22 +1,18 @@
 class FormController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :set_item, only: [:index, :create]
+  before_action :set_form, only: [:index, :new]
   def index
-    @form = Form.new
-    @item = Item.find(params[:item_id])
-    if @item.sell_record or @item.sell_record != nil
-      redirect_to user_session_path
-    elsif @item.user == current_user && @item.sell_record != nil
+    if @item.sell_record or @item.user == current_user
       redirect_to '/'
     end
   end
 
   def new
-    @form = Form.new
   end
 
   def create
     @form = Form.new(form_params)
-    @item = Item.find(params[:item_id])
     if @form.valid?
       @form.save
       redirect_to root_path
@@ -31,11 +27,19 @@ class FormController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_f8826a08110005122484c4cd"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: order_params[:price],
       card: order_params[:token],
       currency: 'jpy'
     )
   end
+end
+
+def set_item
+  @item = Item.find(params[:item_id])
+end
+
+def set_form
+  @form = Form.new
 end
