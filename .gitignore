@@ -85,3 +85,5 @@ app/views/shared/_second-footer.html.erbZone.Identifier
 app/views/shared/_second-header.html.erbZone.Identifier
 
 /config/master.key
+
+/config/master.key
