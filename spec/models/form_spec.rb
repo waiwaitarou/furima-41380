@@ -10,7 +10,7 @@ RSpec.describe Form, type: :model do
   describe '商品購入の確認' do
     context '商品購入が失敗した場合' do
       it 'prefectureが未選択では登録できない' do
-        @form.prefecture = 1
+        @form.prefecture_id = 1
         @form.valid?
         expect(@form.errors.full_messages).to include "Prefecture can't be blank"
       end
@@ -25,7 +25,7 @@ RSpec.describe Form, type: :model do
         expect(@form.errors.full_messages).to include "Postal code is invalid. Enter it as follows (e.g. 123-4567)"
       end
       it 'prefecture_NOが空では登録できない' do
-        @form.prefecture_No = ''
+        @form.region_of_origin = ''
         @form.valid?
         expect(@form.errors.full_messages).to include "Prefecture no can't be blank"
       end

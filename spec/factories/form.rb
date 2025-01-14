@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :form do
-    prefecture    {5}
+    prefecture_id    {5}
     postal_code   {"123-4567"}
-    prefecture_No {5}
+    region_of_origin {5}
     tel_number    {6965481125}
     building_name {'松の木'}
     city          {'福山'}

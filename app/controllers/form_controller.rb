@@ -23,7 +23,7 @@ class FormController < ApplicationController
 
   private
   def form_params
-    params.require(:form).permit(:postal_code, :prefecture, :prefecture_No, :building_name, :city, :tel_number, :token ).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id )
+    params.require(:form).permit(:postal_code, :region_of_origin, :prefecture_id, :building_name, :city, :tel_number, :token ).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id )
   end
 
   def pay_item
