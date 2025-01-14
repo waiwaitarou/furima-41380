@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'items/index'
   # Defines the root path route ("/")
   root to: "items#index"
-  resources :items, only: [:index, :new, :create, :show, :edit, :update]
+  resources :items
+  resources :form, only:[:index, :create]
+  resources :items do
+    resources :form, only:[:index, :create, :show]
+  end
   # root "articles#index"
 end
