@@ -13,10 +13,10 @@
 | email              | string  | null: false, unique: true
 | birthday           | date    | null: false
 
-has_many :sale_records
+has_many :sell_records
 has_many :items
 
-## sale_recordsテーブル
+## sell_recordsテーブル
 
 | column           | Type       | options
 | ---------------- | -----------| ------------------------------
@@ -39,7 +39,7 @@ has_one :shipping
 | tel_number       | string     | null: false
 | sale_record      | references | null: false, foreign_key: true
 
-belongs_to :sale_record
+belongs_to :sell_record
 
 ## itemsテーブル
 
@@ -55,5 +55,5 @@ belongs_to :sale_record
 | prefecture_id   | integer    | null: false
 | user            | references | null: false, foreign_key: true
 
-has_one :sale_record
+has_one :sell_record
 belongs_to :user

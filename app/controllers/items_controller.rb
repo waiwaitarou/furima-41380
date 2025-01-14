@@ -20,9 +20,13 @@ class ItemsController < ApplicationController
   end
 
   def show
+    
   end
 
   def edit
+    if @item.sell_record
+      redirect_to '/'
+    end
   end
 
   def update
