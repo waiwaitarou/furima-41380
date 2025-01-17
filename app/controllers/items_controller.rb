@@ -39,8 +39,9 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.destroy
-    redirect_to '/'
+    if item.destroy
+      redirect_to '/'
+    end
   end
   private
   def item_params

@@ -3,6 +3,7 @@ class FormController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :set_form, only: [:index, :new]
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     if @item.sell_record or @item.user == current_user
       redirect_to '/'
     end
@@ -27,7 +28,7 @@ class FormController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV["PAY.JP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: order_params[:price],
       card: order_params[:token],
