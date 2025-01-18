@@ -13,6 +13,7 @@ class FormController < ApplicationController
   end
 
   def create
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @form = Form.new(form_params)
     if @form.valid?
       @form.save
