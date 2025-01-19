@@ -15,6 +15,6 @@ class Form
 
   def save
     sell_record = SellRecord.create(user_id: user_id, item_id: item_id)
-    Shipping.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, tel_number: tel_number, building_name: building_name, sell_record: sell_record, prefecture_No: prefecture_No)
+    Shipping.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, tel_number: tel_number, building_name: building_name, sell_record: sell_record, region_of_origin: region_of_origin)
   end
 end
